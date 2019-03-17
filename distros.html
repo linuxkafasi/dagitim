@@ -1,0 +1,9 @@
+---
+layout: page
+---
+
+<ul class="list-unstyled">
+{%- for distro in site.distros -%}
+  <li><a href="{{ distro.title | downcase | relative_url }}">{{ distro.title }}</a></li>
+{%- endfor -%}
+</ul>

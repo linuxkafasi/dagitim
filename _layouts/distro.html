@@ -1,0 +1,66 @@
+---
+layout: default
+---
+
+<h2>{{ page.title }}</h2>
+
+<div class="row">
+  <div class="col-md-5">
+    <section id="metadata">
+      <h3>Metadata</h3>
+      <p><b>Based on</b>: {{ page.basedOn }}<br>
+         <b>Origin</b>: {{ page.origin }}<br>
+         <b>OS type</b>: {{ page.osType }}</p>
+
+      <h4>Category</h4>
+      <ul>
+        {%- for category in page.category -%}
+        <li>{{ category }}</li>
+        {%- endfor -%}
+      </ul>
+
+      <h4>Desktop</h4>
+      <ul>
+        {%- for desktop in page.desktop -%}
+        <li>{{ desktop }}</li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
+    <section id="architecture">
+      <h3>Architecture</h3>
+      <ul>
+        {%- for arch in page.architecture -%}
+        <li>{{ arch }}</li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
+    <section id="links">
+      <h3>Links</h3>
+      <p>Homepage: <a href="{{ page.homePage }}">{{ page.homePage }}</a><br>
+         Documentation: <a href="{{ page.documentation }}">{{ page.documentation }}</a><br>
+         Download mirrors: {% for mirror in page.downloadMirrors %}
+           <a href="{{ mirror }}">{{ mirror }}</a>,
+         {% endfor %}<br>
+         Mailing list: <a href="{{ page.mailingList }}">{{ page.mailingList }}</a><br>
+         User forums: {% for forum in page.userForums %}
+           <a href="{{ forum }}">{{ forum }}</a>,
+         {% endfor %}<br>
+       </p>
+    </section>
+  </div>
+  <div class="col-md-7">
+    <p>{{ page.description }}</p>
+  </div>
+</div>
+
+<hr>
+
+<p>Relative distros</p>
+
+<ul> <!-- TODO: We need a random distro picker -->
+{%- for distro in site.distros limit: 5 -%}
+  <li><a href="{{ distro.title | downcase | relative_url }}">{{ distro.title }}</a></li>
+{%- endfor -%}
+</ul>
